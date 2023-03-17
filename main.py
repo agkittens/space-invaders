@@ -12,18 +12,14 @@ invaders = []
 window = Window()
 surface = window.drawScreen()
 start = window.startText.render('press any key to start', True, (255, 247, 0))
+win = window.startText.render('VICTORY', True, (255, 247, 0))
+lost = window.startText.render('DEFEATED', True, (255, 247, 0))
 
 def spawnInvaders():
     if not len(invaders):
         player.gameLvl += 1
-        if player.gameLvl == 10:
-            bossFight()
-        else:
-            for _ in range(player.gameLvl+5):
+        for _ in range(player.gameLvl+5):
                 invaders.append(Invader(random.randrange(100,1000), random.randrange(50, 500)))
-
-
-def bossFight():
 
 
 def invaderShooting():
@@ -49,6 +45,7 @@ def gameUpdate():
     playerHp = window.gameText.render(f'HP:{player.hp} ', True, (255, 247, 0))
     gameLvl = window.gameText.render(f'Lvl:{player.gameLvl} ', True, (255, 247, 0))
     playerScore = window.gameText.render(f'Score:{player.score} ', True, (255, 247, 0))
+
 
     surface.blit(window.background, (0, 0))
     surface.blit(playerLives, (10,10))
@@ -94,24 +91,46 @@ def game():
                 for laser in player.lasers:
                     laser.checkCollision(invader,-1, invaders, player)
 
+        if player.score == 100:
+            gameOver(win)
+
+        if player.hearts == 0 and player.hp == 0:
+            gameOver(lost)
+
         pygame.display.update()
     pygame.quit()
 
-def main():
-    run = True
+
+def gameOver(endStatus):
+    runStatus = True
+    surface.blit(window.background, (0, 0))
+    surface.blit(endStatus, (500, 380))
+
+    for invader in invaders[:]:
+        invader.destroyObject(invaders, invader)
+    player.destroyObject(None, player)
+
+    while runStatus:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                runStatus = False
+                pygame.quit()
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
+                runStatus = False
+
+def run():
+    runStatus = True
     clock = pygame.time.Clock()
     surface.blit(window.background, (0, 0))
     surface.blit(start, (300, 400))
 
-    while run:
+    while runStatus:
         clock.tick(window.fps)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
+                runStatus = False
             if event.type == pygame.KEYDOWN:
                 game()
 
         pygame.display.update()
     pygame.quit()
-
-main()

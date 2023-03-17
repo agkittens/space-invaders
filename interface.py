@@ -22,4 +22,3 @@ class Window:
         pygame.display.set_caption(self.caption)
         pygame.display.set_icon(icon)
         return surface
-

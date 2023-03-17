@@ -18,6 +18,12 @@ class Ship():
     def draw(self, window):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
+    def destroyObject(self, objects, object):
+        try:
+            del object
+        except ValueError:
+            return
+
 class Player(Ship):
     def __init__(self):
         self.shipImg = pygame.image.load(os.path.join('assets', 'player.png'))
@@ -107,9 +113,3 @@ class Laser(pygame.sprite.Sprite):
                 except ValueError:
                     return
             self.kill()
-
-
-
-
-
-
