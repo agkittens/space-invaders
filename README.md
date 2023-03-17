@@ -6,8 +6,8 @@
 * [Requirements](#requirements)
 
 ## General Info
-Space Invaders is a classic arcade game that can be recreated using the Pygame library in Python.  In the game, the player controls a small spaceship at the bottom of the screen and must shoot down an army of invaders that move from side to side. The player must avoid getting hit by the invaders' lasers and try to rack up as many points as possible by shooting down the invaders.
-![plot](https://github.com/agkittens/space-invaders/blob/main/assets/example.png?raw=true)
+Space Invaders is a classic arcade game that can be recreated using the Pygame library in Python.  In the game, the player controls a small spaceship at the bottom of the screen and must shoot down an army of invaders that move from side to side. The player must avoid getting hit by the invaders' lasers and try to rack up as many points as possible by shooting down the invaders.\
+![game](https://github.com/agkittens/space-invaders/tree/main/assets/example.png?raw=true)
 
 ## Gameplay
 * Use the left and right arrow keys to move the spaceship\
