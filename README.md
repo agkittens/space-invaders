@@ -1,4 +1,4 @@
-# star wars space invaders
+# space invaders
 
 ## Table of Contents
 * [General Info](#general-info)
